@@ -7,6 +7,5 @@ from dbt.include import testone
 
 
 Plugin = AdapterPlugin(
-    adapter=TestOneAdapter,
-    credentials=TestOneCredentials,
-    include_path=testone.PACKAGE_PATH)
+    adapter=TestOneAdapter, credentials=TestOneCredentials, include_path=testone.PACKAGE_PATH
+)

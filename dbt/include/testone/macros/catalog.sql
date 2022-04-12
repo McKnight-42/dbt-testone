@@ -12,7 +12,7 @@
     */
 
     /*
-    
+
       select {{database}} as TABLE,
         "- set table type -"
              when 'v' then 'VIEW'
@@ -30,7 +30,7 @@
 
       )
       define any shortcut keys
-    
+
     */
   {{{{ exceptions.raise_compiler_error(msg) }}}}
  {{% endmacro {{%

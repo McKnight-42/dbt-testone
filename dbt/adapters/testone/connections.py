@@ -5,12 +5,13 @@ from dbt.adapters.base import Credentials
 from dbt.adapters.sql import SQLConnectionManager
 from dbt.logger import GLOBAL_LOGGER as logger
 
+
 @dataclass
 class TestOneCredentials(Credentials):
-    '''
+    """
     Defines database specific credentials that get added to
     profiles.yml to connect to new adapter
-    '''
+    """
 
     # Add credentials members here, like:
     # host: str
@@ -18,16 +19,12 @@ class TestOneCredentials(Credentials):
     # username: str
     # password: str
 
-    _ALIASES = {
-        'dbname':'database',
-        'pass':'password',
-        'user':'username'
-    }
+    _ALIASES = {"dbname": "database", "pass": "password", "user": "username"}
 
     @property
     def type(self):
-        '''Return name of adapter.'''
-        return 'testone'
+        """Return name of adapter."""
+        return "testone"
 
     @property
     def unique_field(self):
@@ -41,18 +38,18 @@ class TestOneCredentials(Credentials):
         """
         List of keys to display in the `dbt debug` output.
         """
-        return ('host','port','username','user')
+        return ("host", "port", "username", "user")
+
 
 class TestOneConnectionManager(SQLConnectionManager):
-    TYPE = 'testone'
-
+    TYPE = "testone"
 
     @contextmanager
     def exception_handler(self, sql: str):
-        '''
+        """
         Returns a context manager, that will handle exceptions raised
         from queries, catch, log, and raise dbt exceptions it knows how to handle.
-        '''
+        """
         # ## Example ##
         # try:
         #     yield
@@ -70,10 +67,10 @@ class TestOneConnectionManager(SQLConnectionManager):
 
     @classmethod
     def open(cls, connection):
-        '''
+        """
         Receives a connection object and a Credentials object
         and moves it to the 'open' state.
-        '''
+        """
         # ## Example ##
         # if connection.state == 'open':
         #     logger.debug('Connection is already open, skipping open.')
@@ -95,21 +92,21 @@ class TestOneConnectionManager(SQLConnectionManager):
         pass
 
     @classmethod
-    def get_response(cls,cursor):
-        '''
+    def get_response(cls, cursor):
+        """
         Gets a cursor object and returns adapter-specific information
         about the last executed command generally a AdapterResponse ojbect
         that has items such as code, rows_affected,etc. can also just be a string ex. 'OK'
         if your cursor does not offer rich metadata.
-        '''
+        """
         # ## Example ##
         # return cursor.status_message
         pass
 
     def cancel(self, connection):
-        '''
+        """
         Gets a connection object and attempts to cancel any ongoing queries.
-        '''
+        """
         # ## Example ##
         # tid = connection.handle.transaction_id()
         # sql = 'select cancel_transaction({})'.format(tid)
